@@ -16,7 +16,7 @@ public class LoginPage extends BasePage {
 
     //Initializing the Page Objects:
     public LoginPage(){
-        //this.driver = driver;
+
         PageFactory.initElements(driver, this);
     }
 
