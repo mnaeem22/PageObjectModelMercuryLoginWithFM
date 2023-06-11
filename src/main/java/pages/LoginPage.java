@@ -1,18 +1,24 @@
 package pages;
-
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
+
 
 public class LoginPage extends BasePage {
 
+
     @FindBy(name = "userName")
-    private WebElement userNameTextField;
+    public WebElement userNameTextField;
 
     @FindBy(name = "password")
-    private WebElement passwordTextField;
+    public WebElement passwordTextField;
     @FindBy(name = "submit")
-    private WebElement submitButton;
+    public WebElement submitButton;
+
+    @FindBy(xpath = "/html/body/div[2]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[1]/td/h3")
+    public WebElement successMessage;
+
 
     //Initializing the Page Objects:
     public LoginPage(){
@@ -20,16 +26,23 @@ public class LoginPage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
+
     public void enterUserName(String userName){
-        this.userNameTextField.sendKeys(userName);
+       userNameTextField.sendKeys(userName);
     }
 
     public void enterPassword(String password){
-        this.passwordTextField.sendKeys(password);
+        passwordTextField.sendKeys(password);
     }
 
     public void pressSubmitButton(){
-        this.submitButton.click();
+        submitButton.click();
+    }
+
+    public void validateLoginSuccessfullyMessage(){
+        String successMessageTextActual = this.successMessage.getText();
+        String successMessageTestExpected = "Login Successfully";
+        Assert.assertEquals(successMessageTestExpected,successMessageTextActual);
     }
 
 }

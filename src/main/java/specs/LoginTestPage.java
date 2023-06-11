@@ -7,24 +7,27 @@ import pages.BasePage;
 import pages.LoginPage;
 import utils.Utils;
 
-public class LoginTestPage {
+ public class LoginTestPage{
 
     @BeforeMethod
-    public  void setup() {
+    public void setup() {
         BasePage.initialize();
     }
 
+
     @Test(description = "Validate Login")
-    public static void ValidateLoginTest(){
+    public void ValidateLoginTest(){
 
         LoginPage loginPage = new LoginPage();
         loginPage.enterUserName(Utils.userName);
         loginPage.enterPassword(Utils.password);
         loginPage.pressSubmitButton();
+        loginPage.validateLoginSuccessfullyMessage();
+
     }
 
     @AfterMethod
-    public static void cleanUp(){
+    public void cleanUp(){
         BasePage.terminate();
     }
 
